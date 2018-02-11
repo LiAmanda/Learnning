@@ -75,7 +75,7 @@ python中的变量不需要声明，但是在使用前必须赋值，赋值后变量才会被创建
 
 6个标准数据类型：
 Number
-String String和Tuple中的元素不能被修改，list和字典中的元素可以被修改
+String String和Tuple中的元素不能被修改，list和字典中的元素可以被修改（字典可以改value不能修改key）
 List
 Tuple（元组） 当Tuple中只有一个元素时比较特殊应该写完tup(20,)
 Sets（集合）
@@ -244,12 +244,77 @@ list.copy()复制列表
 元组使用小括号，列表使用方括号，字典使用花括号
 
 
+slif代替了else if
+age = int(input("请输入你家狗狗的年龄: "))   age直接是输入数字转化成int之后的值
 
+while 1==1实现无线循环
+你可以使用 CTRL+C 来退出当前的无限循环。
+无限循环在服务器上客户端的实时请求非常有用。
 
+Pass语句：
+pass是空语句，是为了保证程序结构的完整性，不做任何事情一般用作占位语句
 
+sequence = [12, 34, 34, 23, 45, 76, 89]
+for i, j in enumerate(sequence):
+   print(i, j)
+i是索引，j是元素值
 
+迭代器和生成器：
+迭代器有两个基本方法：iter()和next()
 
+list=[1,2,3,4]
+it = iter(list)    # 创建迭代器对象
+print (next(it))   # 输出迭代器的下一个元素
+print (next(it))
+1
+2
 
+可以使用常规for语句进行遍历：
+list=[1,2,3,4]
+it = iter(list)    # 创建迭代器对象
+for x in it:
+    print (x, end=" ")
+也可以使用next函数
+import sys         # 引入 sys 模块
+list=[1,2,3,4]
+it = iter(list)    # 创建迭代器对象
+while True:
+    try:
+        print (next(it))
+    except StopIteration:
+        sys.exit()
+
+生成器：没明白？？？？？？？
+
+函数的定义：
+函数代码块以def关键字开头，后接函数标识符名称和圆括号（）
+第一行语句可以选择性的使用文档字符串用来存放函数说明
+函数内容以冒号起始并且缩进
+return 表达式结束函数，如果只有return没有表达式相当于return None
+
+python函数的参数传递：
+不可变类型：如整数，字符串，元组，如fun（a）传递的只是a的值没有影响到a对象本身，如果在fun（c）的内部修改a的值只是修改了另一个复制的对象并不会影响到a本身
+可变对象：类似c++的引用传递，如列表，字典，如fun(la),则是将la真正的传过去，修改后fun外部的la也会受影响
+python中一切都是对象，所以我们不能说值传递还是引用传递，我们应该说传可变对象还是不可变对象
+
+匿名函数lambda语法：
+sum = lambda arg1, arg2: arg1 + arg2;
+
+变量作用域：
+L(Local)局部作用域
+E(Enclosing)闭包函数外的函数中
+G(Global)全局作用域
+B(Built-in)内建作用域
+以L->E->G->B的规则查找，即：在局部找不到，便会去局部外的局部找（例如闭包），再找不到就去全局找，然后再去内建中找
+
+python中只有模块（module），类（class）以及函数（def，lambda）才会引入新的作用域，其他的代码块如：if/elif/else/,try/except,for/while等是不会引入新的作用域的，也就是说这些语法内定义的变量，外部也可以访问
+如：
+if True:
+	msg = 'I am from Runoob'
+msg
+'I am from Runoob'
+
+当在内部作用域想修改外部作用域的变量时，就要用global和nonlocal关键字了
 
 
 
