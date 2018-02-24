@@ -95,9 +95,9 @@ isinstance()会认为子类是一种父类类型
 del var_a，var_b
 
 数值运算：
-2/4 = 0.5除法得到一个浮点数
-2//4 = 0除法得到一个整数
-2**5 = 32乘方
+2/4 = 0.5   除法得到一个浮点数
+2//4 = 0    除法得到一个整数
+2**5 = 32   乘方
 
 set()集合：
 使用{}或者set()创建集合
@@ -315,6 +315,138 @@ msg
 'I am from Runoob'
 
 当在内部作用域想修改外部作用域的变量时，就要用global和nonlocal关键字了
+num = 1
+def fun1():
+	global num #需要使用global关键字声明
+	print(num)
+	num = 123
+	print(num)
+fun1()
+输出结果：1， 123
+
+如果要修改嵌套作用域（enclosing作用域，外层非全局作用域）中的变量则需要nonlocal关键字
+def outer():
+	num = 10
+	def inner():
+		nonlocal num
+		num = 100
+		print(num)
+	inner()
+	print(num)
+outer()
+输出结果：100, 100
+
+
+# 可写函数说明
+def changeme( mylist ):
+   "修改传入的列表"
+   mylist.append([1,2,3,4]);
+   print ("函数内取值: ", mylist)
+   return
+ 
+# 调用changeme函数
+mylist = [10,20,30];
+changeme( mylist );
+print ("函数外取值: ", mylist)
+
+内建函数：不需要import就可以使用的函数，即内置函数
+
+函数也可以以函数名为参数
+def hello () :
+  print ("Hello, world!")
+def execute(f):
+  "执行一个没有参数的函数"
+  f()
+execute(hello)
+输出结果：Hello, world!
+
+list.remove(x)删除列表中值为x的第一个元素，如果没有这样的元素，就会返回一个错误。
+
+列表推导式
+>>> vec1 = [2, 4, 6]
+>>> vec2 = [4, 3, -9]
+>>> [x*y for x in vec1 for y in vec2]
+[8, 6, -18, 16, 12, -36, 24, 18, -54]
+>>> [x+y for x in vec1 for y in vec2]
+[6, 5, -7, 8, 7, -5, 10, 9, -3]
+>>> [vec1[i]*vec2[i] for i in range(len(vec1))]
+[8, 12, -54]
+
+集合是一个无序不重复元素的集合，基本功能包括关系测试和消除重复元素
+每个模块都有一个_name_属性，当其值是'_main_'时，表明该模块自身在运行，否则是被引入
+内置的函数dir()可以找到模块内定义的所有名称。以一个字符串列表的形式返回：
+dir(moduleName)
+如果不给定参数，那么dir()函数会罗列出当前模块定义的所有名称
+
+包：
+目录只有包含一个叫做_init_.py的文件才会被认为是一个包
+
+输入输出
+str():函数返回一个用户易读的表达式形式
+repr():产生一个解释器易读的表达形式
+
+字符串对象的rjust()方法，它可以将字符串靠右，并在左边填充空格
+ljust()和center()这些方法都不会写任何东西，它们仅仅返回新的字符串
+另一个方法zfill()它会在数字的左边填充0
+
+str.format()的基本使用如下：
+>>> print('{}网址： "{}!"'.format('菜鸟教程', 'www.runoob.com'))
+菜鸟教程网址： "www.runoob.com!"
+
+>>> print('{0} 和 {1}'.format('Google', 'Runoob'))
+Google 和 Runoob
+>>> print('{1} 和 {0}'.format('Google', 'Runoob'))
+Runoob 和 Google
+
+>>> print('{name}网址： {site}'.format(name='菜鸟教程', site='www.runoob.com'))
+菜鸟教程网址： www.runoob.com
+
+>>> print('站点列表 {0}, {1}, 和 {other}。'.format('Google', 'Runoob',other='Taobao'))
+站点列表 Google, Runoob, 和 Taobao。
+
+>>> table = {'Google': 1, 'Runoob': 2, 'Taobao': 3}
+>>> print('Runoob: {0[Runoob]:d}; Google: {0[Google]:d}; Taobao: {0[Taobao]:d}'.format(table))
+Runoob: 2; Google: 1; Taobao: 3
+
+>>> table = {'Google': 1, 'Runoob': 2, 'Taobao': 3}
+>>> print('Runoob: {Runoob:d}; Google: {Google:d}; Taobao: {Taobao:d}'.format(**table))
+Runoob: 2; Google: 1; Taobao: 3
+
+读和写文件
+open()将会返回一个file对象，基础语法格式如下
+open(filename, mode)
+filename 是一个包含了你要访问的文件名称的字符串
+mode决定了打开文件的方式：只读，写入，追加等。这个参数是非强制性的，默认文件访问模式为只读（r）
+
+如果想要改变文件当前的位置，可以使用f.seek(offset,from_what)函数
+from_what的值，如果是0表示开头，如果是1表示当前位置，如果是2表示文件的结尾
+seek(x,0): 从起始位置即文件首行首字符开始移动x个字符
+seek(x,1):表示从当前位置往后移动x个字符
+seek(-x,2):表示从文件的结尾往前移动x个字符
+from_what值为默认为0，及文件开头。
+
+当处理一个文件对象时，可以使用with关键字，相当于平时的using，在结束后，它会帮你正确的关闭文件
+
+pickle模块
+python的pickle模块实现了基本的数据序列化和反序列化
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
